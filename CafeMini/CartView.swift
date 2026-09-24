@@ -4,6 +4,14 @@ struct CartView: View {
     @Binding var CartDict: [String: Int]
     @Binding var Prices: [String: Int]
     @Environment(\.dismiss) var dismiss
+    
+    var total: Int {
+        var sum = 0
+        for (name, amount) in CartDict {
+            sum += (Prices[name] ?? 0) * amount
+        }
+        return sum
+    }
 
     var body: some View {
         VStack {
@@ -97,6 +105,13 @@ struct CartView: View {
                 .foregroundStyle(.thinMaterial))
             .clipShape(RoundedRectangle(cornerRadius: 20))
 
+            Text("Total: $\(total)")
+                .font(.title)
+                .bold()
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 15)
+                    .foregroundStyle(.thinMaterial))
+            
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

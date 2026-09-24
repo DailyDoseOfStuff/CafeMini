@@ -86,10 +86,14 @@ struct ContentView: View {
                                 .overlay(
                                     
                                     HStack{
-                                        Text("\(item)")
-                                            .foregroundStyle(.black)
-                                            .font(.title)
-                                            .bold()
+                                            Text("\(item)")
+                                                .foregroundStyle(.black)
+                                                .font(.title2)
+                                                .bold()
+                                            Text("$\(price[item] ?? 0)")
+                                                .foregroundStyle(.black)
+                                                .font(.title2)
+                                                .bold()
                                         Spacer()
                                         Button(action:{
                                            Cart[item] = (Cart[item] ?? 0) + 1
